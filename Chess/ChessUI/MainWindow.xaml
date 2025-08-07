@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChessUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="167*"/>
-            <ColumnDefinition Width="433*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Board.png"></ImageBrush>
-        </Grid.Background>
+        Title="MainWindow" Width="600" SizeToContent="Height"
+        Icon="/Assets/icon.ico"
+        WindowStartupLocation="CenterScreen"
+        Background="#101010">
+    <Viewbox>
+        <Grid x:Name="BoardGrid" Width="600" Height="600">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/Board.png"></ImageBrush>
+            </Grid.Background>
 
-    </Grid>
+            <UniformGrid x:Name="PieceGrid" 
+                         Rows="8" 
+                         Columns="8" 
+                         RenderOptions.BitmapScalingMode="HighQuality">
+            </UniformGrid>
+        </Grid>
+    </Viewbox>
 </Window>
