@@ -13,22 +13,22 @@ namespace ChessUI
     {
         private static readonly Dictionary<PieaceType, ImageSource> whiteSources = new()
         {
-            { PieaceType.Pawn, LoadImage("Assets/PawnW.png") },
-            { PieaceType.Knight, LoadImage("Assets/KnightW.png") },
-            { PieaceType.Bishop, LoadImage("Assets/BishopW.png") },
-            { PieaceType.Rook, LoadImage("Assets/RookW.png") },
-            { PieaceType.Queen, LoadImage("Assets/QueenW.png") },
-            { PieaceType.King, LoadImage("Assets/KingW.png") }
+            { PieaceType.Pawn, LoadImage("Assets/whitePawn.png") },
+            { PieaceType.Knight, LoadImage("Assets/whiteKnight.png") },
+            { PieaceType.Bishop, LoadImage("Assets/whiteBishop.png") },
+            { PieaceType.Rook, LoadImage("Assets/whiteRook.png") },
+            { PieaceType.Queen, LoadImage("Assets/whiteQueen.png") },
+            { PieaceType.King, LoadImage("Assets/whiteKing.png") }
         };
 
         private static readonly Dictionary<PieaceType, ImageSource> blackSources = new()
         {
-            { PieaceType.Pawn, LoadImage("Assets/PawnB.png") },
-            { PieaceType.Knight, LoadImage("Assets/KnightB.png") },
-            { PieaceType.Bishop, LoadImage("Assets/BishopB.png") },
-            { PieaceType.Rook, LoadImage("Assets/RookB.png") },
-            { PieaceType.Queen, LoadImage("Assets/QueenB.png") },
-            { PieaceType.King, LoadImage("Assets/KingB.png") }
+            { PieaceType.Pawn, LoadImage("Assets/blackPawn.png") },
+            { PieaceType.Knight, LoadImage("Assets/blackKnight.png") },
+            { PieaceType.Bishop, LoadImage("Assets/blackBishop.png") },
+            { PieaceType.Rook, LoadImage("Assets/blackRook.png") },
+            { PieaceType.Queen, LoadImage("Assets/blackQueen.png") },
+            { PieaceType.King, LoadImage("Assets/blackKing.png") }
         };
         private static ImageSource LoadImage (string filePath)
         {
