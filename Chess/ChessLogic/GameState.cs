@@ -15,5 +15,22 @@ namespace ChessLogic
             CurrentPlayer = player;
             Board = board;
         }
+
+        public IEnumerable<Move> LegalMovesForPiece(Position position)
+        {
+            if (Board.IsEmty(position) || Board[position].Color != CurrentPlayer)
+            {
+                return Enumerable.Empty<Move>();
+            }
+
+            Piece piece = Board[position];
+            return piece.GetMoves(position, Board);
+        }
+
+        public void MakeMove(Move move)
+        {
+            move.Execute(Board);
+            CurrentPlayer = CurrentPlayer.Opposite();
+        }
     }
 }

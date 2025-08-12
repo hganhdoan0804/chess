@@ -12,7 +12,7 @@ namespace ChessLogic
         public abstract Player Color { get; }
         public bool HasMoved { get; set; } = false;
         public abstract Piece Copy();
-        public abstract IEnumerable<Move> GetMoves(Position position, Board board);
+        public abstract IEnumerable<Move> GetMoves(Position fromPosition, Board board);
 
         protected IEnumerable<Position> MovePositions(Position fromPosition, Board board, Direction direction)
         {
