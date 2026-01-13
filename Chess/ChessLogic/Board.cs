@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public class Board
     {
-        private readonly Piece[,] pieces = new Piece[8,8];
+        private readonly Piece[,] pieces = new Piece[8, 8];
         public Piece this[int row, int col]
         {
             get => pieces[row, col];
@@ -67,6 +67,46 @@ namespace ChessLogic
         public bool IsEmty(Position position)
         {
             return this[position] == null;
+        }
+
+        public IEnumerable<Position> PiecePositions()
+        {
+            for (int row = 0; row < 8; row++)
+            {
+                for (int column = 0; column < 8; column++)
+                {
+                    Position position = new Position(row, column);
+                    if (!IsEmty(position))
+                    {
+                        yield return position;
+                    }
+                }
+            }
+
+        }
+
+        public IEnumerable<Position> PiecePositionsFor(Player player)
+        {
+            return PiecePositions().Where(position => this[position].Color == player);
+        }
+
+        public bool IsInCheck(Player player)
+        {
+            return PiecePositionsFor(player.Opposite()).Any(position =>
+            {
+                Piece piece = this[position];
+                return piece.CanCaptureOpponentKing(position, this);
+            });
+        }
+
+        public Board Copy()
+        {
+            Board copy = new Board();
+            foreach(Position position in PiecePositions())
+            {
+                copy[position] = this[position].Copy();
+            }
+            return copy;
         }
     }
 }
