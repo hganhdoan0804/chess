@@ -47,3 +47,11 @@ D:\ChessProgramming\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.csproj.
 D:\ChessProgramming\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.dll
 D:\ChessProgramming\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.genruntimeconfig.cache
 D:\ChessProgramming\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ref\ChessUI.dll
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.csproj.AssemblyReference.cache
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\App.g.cs
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI_MarkupCompile.cache
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI_MarkupCompile.lref
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.dll
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\refint\ChessUI.dll
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.pdb
