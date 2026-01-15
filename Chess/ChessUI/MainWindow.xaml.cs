@@ -95,8 +95,30 @@ namespace ChessUI
             HideHighlights();
             if(moveCache.TryGetValue(position, out Move move))
             {
+                if(move.Type == MoveType.Promotion)
+                {
+                    HandlePromotion(move.FromPosition, move.ToPosition);
+                }
+                else
+                {
+                    HandleMove(move);
+                }
                 HandleMove(move);
             }
+        }
+
+        private void HandlePromotion(Position fromPosition, Position toPosition)
+        {
+            pieceImages[toPosition.Row, toPosition.Column].Source = Images.GetImageSource(gameState.CurrentPlayer, PieaceType.Pawn);
+            pieceImages[fromPosition.Row, fromPosition.Column].Source = null;
+            PromotionMenu promotionMenu = new PromotionMenu(gameState.CurrentPlayer);
+            MenuContainer.Content = promotionMenu;
+            promotionMenu.PieaceSelected += type =>
+            {
+                MenuContainer.Content = null;
+                Move promotionMove = new PawnPromotion(fromPosition, toPosition, type);
+                HandleMove(promotionMove);
+            };
         }
 
         private void HandleMove(Move move)

@@ -45,11 +45,31 @@ namespace ChessLogic
             return board[position].Color != Color;
         }
 
+        private static IEnumerable<Move> PromotionsMove(Position fromPosition, Position toPosition)
+        {
+            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Knight);
+            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Bishop);
+            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Rook);
+            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Queen);
+        }
+
         private IEnumerable<Move> ForwardMoves(Position fromPosition, Board board)
         {
             Position oneMove = fromPosition + forward;
             if (CanMoveTo(oneMove, board))
             {
+                if(oneMove.Row == 0 || oneMove.Row == 7)
+                {
+                    foreach(Move promotionMove  in PromotionsMove(fromPosition, oneMove))
+                    {
+                        yield return promotionMove;
+                    }
+                }
+                else
+                {
+                    yield return new NormalMove(fromPosition, oneMove);
+                }
+
                 yield return new NormalMove(fromPosition, oneMove);
                 Position twoMoves = oneMove + forward;
                 if(!HasMoved && CanMoveTo(twoMoves, board))
@@ -66,7 +86,17 @@ namespace ChessLogic
                 Position toPosition = fromPosition + forward + direction;
                 if(CanCaptureAt(toPosition, board))
                 {
-                    yield return new NormalMove(fromPosition, toPosition);
+                    if (toPosition.Row == 0 || toPosition.Row == 7)
+                    {
+                        foreach (Move promotionMove in PromotionsMove(fromPosition, toPosition))
+                        {
+                            yield return promotionMove;
+                        }
+                    }
+                    else
+                    {
+                        yield return new NormalMove(fromPosition, toPosition);
+                    }
                 }
             }
         }

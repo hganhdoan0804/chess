@@ -29,3 +29,7 @@ D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\obj\Debug\ne
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\obj\Debug\net8.0\ChessLogic.dll
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\obj\Debug\net8.0\refint\ChessLogic.dll
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\obj\Debug\net8.0\ChessLogic.pdb
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\bin\Debug\net8.0\ChessLogic.deps.json
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\bin\Debug\net8.0\ChessLogic.dll
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\bin\Debug\net8.0\ChessLogic.pdb
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessLogic\obj\Debug\net8.0\ref\ChessLogic.dll
