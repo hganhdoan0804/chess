@@ -28,6 +28,43 @@ namespace ChessLogic
             Color = color;
         }
 
+        private static bool IsUnmovedRook(Position position, Board board)
+        {
+            if (board.IsEmty(position))
+            {
+                return false;
+            }
+            Piece piece = board[position];
+            return piece.Type == PieaceType.Rook && !piece.HasMoved;
+        }
+
+        private static bool AllEmpty(IEnumerable<Position> positions, Board board)
+        {
+            return positions.All(position => board.IsEmty(position));
+        }
+
+        private bool CanCastleKingSide(Position fromPosition, Board board)
+        {
+            if (HasMoved)
+            {
+                return false;
+            }
+            Position rookPosition = new Position(fromPosition.Row, 7);
+            Position[] betweenPositions = new Position[] { new(fromPosition.Row, 5), new(fromPosition.Row, 6) }; 
+            return IsUnmovedRook(rookPosition, board) && AllEmpty(betweenPositions, board);
+        }
+
+        private bool CanCastleQueenSide(Position fromPosition, Board board)
+        {
+            if (HasMoved)
+            {
+                return false;
+            }
+            Position rookPosition = new Position(fromPosition.Row, 0);
+            Position[] betweenPositions = new Position[] { new(fromPosition.Row, 1), new(fromPosition.Row, 2), new(fromPosition.Row, 3) };
+            return IsUnmovedRook(rookPosition, board) && AllEmpty(betweenPositions, board);
+        }
+
         public override Piece Copy()
         {
             King copy = new King(Color);
@@ -57,6 +94,15 @@ namespace ChessLogic
             foreach(Position to in MovePositions(fromPosition, board))
             {
                 yield return new NormalMove(fromPosition, to);
+            }
+
+            if(CanCastleKingSide(fromPosition, board))
+            {
+                yield return new Castle(MoveType.CastleKingSide, fromPosition);
+            }
+            if(CanCastleQueenSide(fromPosition, board))
+            {
+                yield return new Castle(MoveType.CastleQueenSide, fromPosition);
             }
         }
 
