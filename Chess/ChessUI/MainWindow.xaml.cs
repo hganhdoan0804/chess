@@ -201,13 +201,36 @@ namespace ChessUI
             };
         }
 
+        private void ShowPauseMenu()
+        {
+            PauseMenu pauseMenu = new PauseMenu();
+            MenuContainer.Content = pauseMenu;
+            pauseMenu.OptionSelected += option =>
+            {
+                MenuContainer.Content = null;
+                if (option == Option.Restart)
+                {
+                    RestartGame();
+                }
+            };
+        }
+
         private void RestartGame()
         {
+            selectedPosition = null;
             HideHighlights();
             moveCache.Clear();
             gameState = new GameState(Player.White, Board.Initial());
             DrawBoard(gameState.Board);
             SetCursor(gameState.CurrentPlayer);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(!IsMenuOnScreen() && e.Key == Key.Space)
+            {
+                ShowPauseMenu();
+            }
         }
     }
 }

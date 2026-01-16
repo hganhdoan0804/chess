@@ -75,3 +75,7 @@ D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.csproj.Up2Date
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ChessUI.genruntimeconfig.cache
 D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\ref\ChessUI.dll
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\PauseMenu.g.cs
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\PromotionMenu.g.cs
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\PauseMenu.baml
+D:\HoangAnhProgramming\HoangAnh_Github\chess\chess\Chess\ChessUI\obj\Debug\net8.0-windows\PromotionMenu.baml
