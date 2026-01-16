@@ -9,6 +9,12 @@ namespace ChessLogic
     public class Board
     {
         private readonly Piece[,] pieces = new Piece[8, 8];
+        private readonly Dictionary<Player, Position> pawnSkipPositions = new Dictionary<Player, Position>()
+        {
+            {Player.White, null },
+            { Player.Black, null },
+        };
+
         public Piece this[int row, int col]
         {
             get => pieces[row, col];
@@ -19,6 +25,23 @@ namespace ChessLogic
         {
             get => pieces[pos.Row, pos.Column];
             set => pieces[pos.Row, pos.Column] = value;
+        }
+
+        public Position GetPawnSkipPosition(Player player)
+        {
+            return pawnSkipPositions[player];
+        }
+
+        public void SetPawnSkipPosition(Player player, Position position)
+        {
+            pawnSkipPositions[player] = position;
+        }
+
+        public static Board Initial()
+        {
+            Board board = new Board();
+            board.AddStartPieces();
+            return board;
         }
 
         private void AddStartPieces()
@@ -50,13 +73,6 @@ namespace ChessLogic
             // Add Kings
             pieces[0, 4] = new King(Player.Black);
             pieces[7, 4] = new King(Player.White);
-        }
-
-        public static Board Initial()
-        {
-            Board board = new Board();
-            board.AddStartPieces();
-            return board;
         }
 
         public static bool IsInside(Position position)
