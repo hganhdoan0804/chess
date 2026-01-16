@@ -124,5 +124,61 @@ namespace ChessLogic
             }
             return copy;
         }
+
+        public Counting CountPiece()
+        {
+            Counting counting = new Counting();
+            foreach(Position position in PiecePositions())
+            {
+                Piece piece = this[position];
+                counting.Increment(piece.Color, piece.Type);
+            }
+            return counting;
+        }
+
+        public bool InsufficientMaterial()
+        {
+            Counting counting = CountPiece();
+            return IsKingVKing(counting) || IsKingBishopVKing(counting) || IsKingBishopVKingBishop(counting)
+                || IsKingKnightVKing(counting);
+        }
+
+        private static bool IsKingVKing(Counting counting)
+        {
+            return counting.TotalCount == 2;
+        }
+
+        private static bool IsKingBishopVKing(Counting counting)
+        {
+            return counting.TotalCount == 3 && (counting.White(PieaceType.Bishop) == 1 
+                || counting.Black(PieaceType.Bishop) == 1);
+        }
+
+        private static bool IsKingKnightVKing(Counting counting)
+        {
+            return counting.TotalCount == 3 && (counting.White(PieaceType.Knight) == 1
+                || counting.Black(PieaceType.Knight) == 1);
+        }
+
+        private bool IsKingBishopVKingBishop(Counting counting)
+        {
+            if (counting.TotalCount != 4) 
+            { 
+                return false;
+            }
+
+            if(counting.White(PieaceType.Bishop) != 1 || counting.Black(PieaceType.Bishop) != 1)
+            {
+                return false;
+            }
+            Position whiteBishopPosition = FindPiece(Player.White, PieaceType.Bishop);
+            Position blackBishopPosition = FindPiece(Player.Black, PieaceType.Bishop);
+            return whiteBishopPosition.SquareColor() == blackBishopPosition.SquareColor();
+        }
+
+        private Position FindPiece(Player color, PieaceType type )
+        {
+            return PiecePositionsFor(color).First(position => this[position].Type == type);
+        }
     }
 }

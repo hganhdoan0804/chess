@@ -18,12 +18,14 @@ namespace ChessLogic
             ToPosition = to;
         }
 
-        public override void Execute(Board board)
+        public override bool Execute(Board board)
         {
             Piece piece = board[FromPosition];
+            bool captrue = !board.IsEmty(ToPosition);
             board[ToPosition] = piece;
             board[FromPosition] = null;
             piece.HasMoved = true;
+            return captrue || piece.Type == PieaceType.Pawn;
         }
 
     }
