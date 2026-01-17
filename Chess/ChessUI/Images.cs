@@ -11,31 +11,31 @@ namespace ChessUI
 {
     public static class Images
     {
-        private static readonly Dictionary<PieaceType, ImageSource> whiteSources = new()
+        private static readonly Dictionary<PieceType, ImageSource> whiteSources = new()
         {
-            { PieaceType.Pawn, LoadImage("Assets/whitePawn.png") },
-            { PieaceType.Knight, LoadImage("Assets/whiteKnight.png") },
-            { PieaceType.Bishop, LoadImage("Assets/whiteBishop.png") },
-            { PieaceType.Rook, LoadImage("Assets/whiteRook.png") },
-            { PieaceType.Queen, LoadImage("Assets/whiteQueen.png") },
-            { PieaceType.King, LoadImage("Assets/whiteKing.png") }
+            { PieceType.Pawn, LoadImage("Assets/whitePawn.png") },
+            { PieceType.Knight, LoadImage("Assets/whiteKnight.png") },
+            { PieceType.Bishop, LoadImage("Assets/whiteBishop.png") },
+            { PieceType.Rook, LoadImage("Assets/whiteRook.png") },
+            { PieceType.Queen, LoadImage("Assets/whiteQueen.png") },
+            { PieceType.King, LoadImage("Assets/whiteKing.png") }
         };
 
-        private static readonly Dictionary<PieaceType, ImageSource> blackSources = new()
+        private static readonly Dictionary<PieceType, ImageSource> blackSources = new()
         {
-            { PieaceType.Pawn, LoadImage("Assets/blackPawn.png") },
-            { PieaceType.Knight, LoadImage("Assets/blackKnight.png") },
-            { PieaceType.Bishop, LoadImage("Assets/blackBishop.png") },
-            { PieaceType.Rook, LoadImage("Assets/blackRook.png") },
-            { PieaceType.Queen, LoadImage("Assets/blackQueen.png") },
-            { PieaceType.King, LoadImage("Assets/blackKing.png") }
+            { PieceType.Pawn, LoadImage("Assets/blackPawn.png") },
+            { PieceType.Knight, LoadImage("Assets/blackKnight.png") },
+            { PieceType.Bishop, LoadImage("Assets/blackBishop.png") },
+            { PieceType.Rook, LoadImage("Assets/blackRook.png") },
+            { PieceType.Queen, LoadImage("Assets/blackQueen.png") },
+            { PieceType.King, LoadImage("Assets/blackKing.png") }
         };
         private static ImageSource LoadImage (string filePath)
         {
             return new BitmapImage(new Uri(filePath, UriKind.Relative));
         }
 
-        public static ImageSource GetImageSource(Player player , PieaceType pieaceType)
+        public static ImageSource GetImageSource(Player player , PieceType pieaceType)
         {
             return player switch
             {

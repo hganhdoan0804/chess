@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public class King : Piece
     {
-        public override PieaceType Type => PieaceType.King;
+        public override PieceType Type => PieceType.King;
         public override Player Color { get; }
 
         private static readonly Direction[] directions = new Direction[]
@@ -35,7 +35,7 @@ namespace ChessLogic
                 return false;
             }
             Piece piece = board[position];
-            return piece.Type == PieaceType.Rook && !piece.HasMoved;
+            return piece.Type == PieceType.Rook && !piece.HasMoved;
         }
 
         private static bool AllEmpty(IEnumerable<Position> positions, Board board)
@@ -111,7 +111,7 @@ namespace ChessLogic
             return GetMoves(from, board).Any(move =>
             {
                 Piece piece = board[move.ToPosition];
-                return piece != null && piece.Type == PieaceType.King;
+                return piece != null && piece.Type == PieceType.King;
             });
         }
     }   

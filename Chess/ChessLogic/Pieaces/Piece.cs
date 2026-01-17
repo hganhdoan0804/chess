@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public abstract class Piece
     {
-        public abstract PieaceType Type { get; }
+        public abstract PieceType Type { get; }
         public abstract Player Color { get; }
         public bool HasMoved { get; set; } = false;
         public abstract Piece Copy();
@@ -43,7 +43,7 @@ namespace ChessLogic
             return GetMoves(from, board).Any(move =>
             {
                 Piece piece = board[move.ToPosition];
-                return piece != null && piece.Type == PieaceType.King;
+                return piece != null && piece.Type == PieceType.King;
             });
         }
     }

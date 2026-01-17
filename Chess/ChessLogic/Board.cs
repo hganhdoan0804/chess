@@ -118,7 +118,7 @@ namespace ChessLogic
         public Board Copy()
         {
             Board copy = new Board();
-            foreach(Position position in PiecePositions())
+            foreach (Position position in PiecePositions())
             {
                 copy[position] = this[position].Copy();
             }
@@ -128,7 +128,7 @@ namespace ChessLogic
         public Counting CountPiece()
         {
             Counting counting = new Counting();
-            foreach(Position position in PiecePositions())
+            foreach (Position position in PiecePositions())
             {
                 Piece piece = this[position];
                 counting.Increment(piece.Color, piece.Type);
@@ -150,35 +150,104 @@ namespace ChessLogic
 
         private static bool IsKingBishopVKing(Counting counting)
         {
-            return counting.TotalCount == 3 && (counting.White(PieaceType.Bishop) == 1 
-                || counting.Black(PieaceType.Bishop) == 1);
+            return counting.TotalCount == 3 && (counting.White(PieceType.Bishop) == 1
+                || counting.Black(PieceType.Bishop) == 1);
         }
 
         private static bool IsKingKnightVKing(Counting counting)
         {
-            return counting.TotalCount == 3 && (counting.White(PieaceType.Knight) == 1
-                || counting.Black(PieaceType.Knight) == 1);
+            return counting.TotalCount == 3 && (counting.White(PieceType.Knight) == 1
+                || counting.Black(PieceType.Knight) == 1);
         }
 
         private bool IsKingBishopVKingBishop(Counting counting)
         {
-            if (counting.TotalCount != 4) 
-            { 
-                return false;
-            }
-
-            if(counting.White(PieaceType.Bishop) != 1 || counting.Black(PieaceType.Bishop) != 1)
+            if (counting.TotalCount != 4)
             {
                 return false;
             }
-            Position whiteBishopPosition = FindPiece(Player.White, PieaceType.Bishop);
-            Position blackBishopPosition = FindPiece(Player.Black, PieaceType.Bishop);
+
+            if (counting.White(PieceType.Bishop) != 1 || counting.Black(PieceType.Bishop) != 1)
+            {
+                return false;
+            }
+            Position whiteBishopPosition = FindPiece(Player.White, PieceType.Bishop);
+            Position blackBishopPosition = FindPiece(Player.Black, PieceType.Bishop);
             return whiteBishopPosition.SquareColor() == blackBishopPosition.SquareColor();
         }
 
-        private Position FindPiece(Player color, PieaceType type )
+        private Position FindPiece(Player color, PieceType type)
         {
             return PiecePositionsFor(color).First(position => this[position].Type == type);
+        }
+
+        private bool IsUnMovedKingAndRook(Position kingPosition, Position rookPosition)
+        {
+            if(IsEmty(kingPosition) || IsEmty(rookPosition))
+            {
+                return false;
+            }
+            Piece king = this[kingPosition];
+            Piece rook = this[rookPosition];
+            return king.Type == PieceType.King && rook.Type == PieceType.Rook &&
+                    !king.HasMoved && !rook.HasMoved;
+        }
+
+        public bool CastleRightKingSide(Player player)
+        {
+            return player switch
+            {
+                Player.White => IsUnMovedKingAndRook(new Position(7, 4), new Position(7, 7)),
+                Player.Black => IsUnMovedKingAndRook(new Position(0, 4), new Position(0, 7)),
+                _ => false,
+            };
+        }
+
+        public bool CastleRightQueenSide(Player player)
+        {
+            return player switch
+            {
+                Player.White => IsUnMovedKingAndRook(new Position(7, 4), new Position(7, 0)),
+                Player.Black => IsUnMovedKingAndRook(new Position(0, 4), new Position(0, 0)),
+                _ => false,
+            };
+        }
+
+        private bool HasPawnInPosition(Player player, Position[] pawnPositions, Position skipPosition)
+        {
+            foreach (Position position in pawnPositions.Where(IsInside))
+            {
+                Piece piece = this[position];
+                if(piece == null || piece.Color != player || piece.Type != PieceType.Pawn)
+                {
+                    continue;
+                }
+
+                EnPassant moveEnPassant = new EnPassant(position, skipPosition);
+                if (moveEnPassant.IsLegal(this))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CanCaptureEnPassant(Player player)
+        {
+            Position skipPosition = GetPawnSkipPosition(player.Opposite());
+            if (skipPosition == null)
+            {
+                return false;
+            }
+
+            Position[] pawnPositions = player switch
+            {
+                Player.White => new Position[] { skipPosition + Direction.DownLeft, skipPosition + Direction.DownRight },
+                Player.Black => new Position[] { skipPosition + Direction.UpLeft, skipPosition + Direction.UpRight },
+                _ => Array.Empty<Position>(),
+            };
+
+            return HasPawnInPosition(player, pawnPositions, skipPosition);
         }
     }
 }

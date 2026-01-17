@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public class Bishop : Piece
     {
-        public override PieaceType Type => PieaceType.Bishop;
+        public override PieceType Type => PieceType.Bishop;
         public override Player Color { get; }
         private static readonly Direction[] directions = new Direction[]
         {

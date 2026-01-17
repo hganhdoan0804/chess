@@ -25,7 +25,7 @@ namespace ChessLogic
             board[ToPosition] = piece;
             board[FromPosition] = null;
             piece.HasMoved = true;
-            return captrue || piece.Type == PieaceType.Pawn;
+            return captrue || piece.Type == PieceType.Pawn;
         }
 
     }

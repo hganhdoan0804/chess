@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public class Pawn : Piece
     {
-        public override PieaceType Type => PieaceType.Pawn;
+        public override PieceType Type => PieceType.Pawn;
         public override Player Color { get; }
         private readonly Direction forward;
         public Pawn(Player color)
@@ -47,10 +47,10 @@ namespace ChessLogic
 
         private static IEnumerable<Move> PromotionsMove(Position fromPosition, Position toPosition)
         {
-            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Knight);
-            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Bishop);
-            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Rook);
-            yield return new PawnPromotion(fromPosition, toPosition, PieaceType.Queen);
+            yield return new PawnPromotion(fromPosition, toPosition, PieceType.Knight);
+            yield return new PawnPromotion(fromPosition, toPosition, PieceType.Bishop);
+            yield return new PawnPromotion(fromPosition, toPosition, PieceType.Rook);
+            yield return new PawnPromotion(fromPosition, toPosition, PieceType.Queen);
         }
 
         private IEnumerable<Move> ForwardMoves(Position fromPosition, Board board)
@@ -114,7 +114,7 @@ namespace ChessLogic
             return CaptureMoves(from, board).Any(move =>
             {
                 Piece piece = board[move.ToPosition];
-                return piece != null && piece.Type == PieaceType.King;
+                return piece != null && piece.Type == PieceType.King;
             });
         }
     }

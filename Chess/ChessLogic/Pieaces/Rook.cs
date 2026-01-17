@@ -8,7 +8,7 @@ namespace ChessLogic
 {
     public class Rook : Piece
     {
-        public override PieaceType Type => PieaceType.Rook;
+        public override PieceType Type => PieceType.Rook;
         public override Player Color { get; }
         private static readonly Direction[] directions = new Direction[]
         {

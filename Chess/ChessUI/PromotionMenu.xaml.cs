@@ -21,34 +21,34 @@ namespace ChessUI
     /// </summary>
     public partial class PromotionMenu : UserControl
     {
-        public event Action<PieaceType> PieaceSelected;
+        public event Action<PieceType> PieaceSelected;
         public PromotionMenu(Player player)
         {
             InitializeComponent();
-            QueenImg.Source = Images.GetImageSource(player, PieaceType.Queen);
-            BishopImg.Source = Images.GetImageSource(player, PieaceType.Bishop);
-            KnightImg.Source = Images.GetImageSource(player, PieaceType.Knight);
-            RookImg.Source = Images.GetImageSource(player, PieaceType.Rook);
+            QueenImg.Source = Images.GetImageSource(player, PieceType.Queen);
+            BishopImg.Source = Images.GetImageSource(player, PieceType.Bishop);
+            KnightImg.Source = Images.GetImageSource(player, PieceType.Knight);
+            RookImg.Source = Images.GetImageSource(player, PieceType.Rook);
         }
 
         private void KnightImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PieaceSelected?.Invoke(PieaceType.Knight);
+            PieaceSelected?.Invoke(PieceType.Knight);
         }
 
         private void BishopImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PieaceSelected?.Invoke(PieaceType.Bishop);
+            PieaceSelected?.Invoke(PieceType.Bishop);
         }
 
         private void QueenImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PieaceSelected?.Invoke(PieaceType.Queen);
+            PieaceSelected?.Invoke(PieceType.Queen);
         }
 
         private void RookImg_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PieaceSelected?.Invoke(PieaceType.Rook);
+            PieaceSelected?.Invoke(PieceType.Rook);
         }
     }
 }

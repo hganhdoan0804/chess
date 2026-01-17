@@ -109,7 +109,7 @@ namespace ChessUI
 
         private void HandlePromotion(Position fromPosition, Position toPosition)
         {
-            pieceImages[toPosition.Row, toPosition.Column].Source = Images.GetImageSource(gameState.CurrentPlayer, PieaceType.Pawn);
+            pieceImages[toPosition.Row, toPosition.Column].Source = Images.GetImageSource(gameState.CurrentPlayer, PieceType.Pawn);
             pieceImages[fromPosition.Row, fromPosition.Column].Source = null;
             PromotionMenu promotionMenu = new PromotionMenu(gameState.CurrentPlayer);
             MenuContainer.Content = promotionMenu;

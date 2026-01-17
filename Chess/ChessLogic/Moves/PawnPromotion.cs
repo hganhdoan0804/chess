@@ -11,9 +11,9 @@ namespace ChessLogic
         public override MoveType Type => MoveType.Promotion;
         public override Position FromPosition { get; }
         public override Position ToPosition { get; }
-        private readonly PieaceType _newType;
+        private readonly PieceType _newType;
 
-        public PawnPromotion(Position fromPosition, Position toPosition, PieaceType newType)
+        public PawnPromotion(Position fromPosition, Position toPosition, PieceType newType)
         {
             FromPosition = fromPosition;
             ToPosition = toPosition;
@@ -24,10 +24,10 @@ namespace ChessLogic
         {
             return _newType switch
             {
-                PieaceType.Knight => new Knight(color),
-                PieaceType.Bishop => new Bishop(color),
-                PieaceType.Rook => new Rook(color),
-                PieaceType.Queen => new Queen(color),
+                PieceType.Knight => new Knight(color),
+                PieceType.Bishop => new Bishop(color),
+                PieceType.Rook => new Rook(color),
+                PieceType.Queen => new Queen(color),
                 _ => new Queen(color)
             };
         }
