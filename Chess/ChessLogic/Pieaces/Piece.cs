@@ -14,7 +14,7 @@ namespace ChessLogic
         public abstract Piece Copy();
         public abstract IEnumerable<Move> GetMoves(Position fromPosition, Board board);
 
-        protected IEnumerable<Position> MovePositions(Position fromPosition, Board board, Direction direction)
+        protected IEnumerable<Position> MovePositionsInDirection(Position fromPosition, Board board, Direction direction)
         {
             for(Position pos = fromPosition + direction; Board.IsInside(pos); pos += direction)
             {
@@ -35,7 +35,7 @@ namespace ChessLogic
 
         protected IEnumerable<Position> MovePositions(Position fromPosition, Board board, Direction[] directions)
         {
-            return directions.SelectMany(x => MovePositions(fromPosition, board, directions));
+            return directions.SelectMany(direction => MovePositionsInDirection(fromPosition, board, direction));
         }
 
         public virtual bool CanCaptureOpponentKing(Position from, Board board)
